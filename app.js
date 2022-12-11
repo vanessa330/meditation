@@ -1,61 +1,53 @@
 const playBtn = document.querySelector(".play-btn");
 let audio = document.querySelector("#audio");
-let video = document.querySelector("#video");
-
 let timeDisplay = document.querySelector(".time-display");
-let fakeDuration = 600; // Defalut 10 mins
-
+let fakeDuration = 300;
 const timeSelect = Array.from(document.querySelectorAll(".time-select"));
 
-// Select the Audio and Video background
-
-document.querySelector('.rain').addEventListener('click', () => {
-  audio.innerHTML = `<source src="./sounds/rain.mp3" />`;
-  video.innerHTML = `<source src="./video/rain.mp4" type="video/mp4" />`;
-})
-
-document.querySelector('.beach').addEventListener('click', () => {
-  audio.innerHTML = `<source src="./sounds/beach.mp3" />`;
-  video.innerHTML = `<source src="./video/beach.mp4" type="video/mp4" />`;
-})
-
-// Stop and play the sound
-
-playBtn.addEventListener("click", () => {
-  checkPlaying(audio);
-});
-
-const checkPlaying = (audio) => {
-  if (audio.paused) {
-    playBtn.innerHTML = `<i class="fa-solid fa-pause display-3"></i>`;
-    audio.play();
-    video.play();
-  } else {
-    playBtn.innerHTML = `<i class="fa-solid fa-play display-3"></i>`;
-    audio.pause();
-    video.pause();
-  }
-};
-
-// Select the time button
+// Select the time druration button
 
 timeSelect.map((button) => {
   button.addEventListener("click", () => {
     fakeDuration = button.getAttribute("data-time");
 
-    timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${Math.floor(
-      fakeDuration % 60
-    )}`;
+    timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:00`;
   });
 });
 
+// Select the different audio
+
+let changeSound = (musicPath) => {
+  audio.pause();
+  audio.setAttribute("src", musicPath);
+  audio.load();
+};
+
+// Stop and play the sound
+
+playBtn.addEventListener("click", () => {
+  checkPlaying();
+})
+
+function checkPlaying(){
+  if (audio.paused) {
+    playBtn.innerHTML = `<i class="fa-solid fa-pause display-3"></i>`;
+    audio.play();
+    timerInterval = window.setInterval(countdown, 1000);
+  } else {
+    playBtn.innerHTML = `<i class="fa-solid fa-play display-3"></i>`;
+    audio.pause();
+    window.clearInterval(timerInterval);
+  }
+} 
+
 // Animated the time display
 
-audio.ontimeupdate = () => {
-  let currentTime = audio.currentTime;
-  let coundDown = fakeDuration - currentTime;
-  let minutes = Math.floor(coundDown / 60);
-  let seconds = Math.floor(coundDown % 60);
+function countdown() {
+  let timeRemaining = fakeDuration;
+
+  fakeDuration--;
+  let minutes = Math.floor(timeRemaining / 60);
+  let seconds = Math.floor(timeRemaining % 60);
 
   let leadingSeconds = 0;
   let leadingMinutes = 0;
@@ -74,9 +66,9 @@ audio.ontimeupdate = () => {
 
   timeDisplay.innerText = `${leadingMinutes}:${leadingSeconds}`;
 
-  if (currentTime >= fakeDuration) {
+  if (timeRemaining <= 0) {
+    playBtn.innerHTML = `<i class="fa-solid fa-play display-3"></i>`;
     audio.pause();
-    video.pause();
-    audio.currentTime = 0;
+    timeDisplay.innerHTML = `00:00`;
   }
-};
+}

@@ -27,44 +27,78 @@
       id="app"
       class="container d-flex flex-column align-items-center justify-content-center"
     >
+      <!-- Time druration select button -->
       <div class="m-5">
-        <button type="button" data-time="300" class="time-select btn btn-outline-secondary m-2">
+        <button
+          type="button"
+          data-time="5"
+          class="time-select btn btn-outline-light m-2"
+        >
           5 Minutes
         </button>
-        <button type="button" data-time="600" class="time-select btn btn-outline-secondary m-2">
+        <button
+          type="button"
+          data-time="600"
+          class="time-select btn btn-outline-light m-2"
+        >
           10 Minutes
         </button>
-        <button type="button" data-time="1200" class="time-select btn btn-outline-secondary m-2">
+        <button
+          type="button"
+          data-time="1200"
+          class="time-select btn btn-outline-light m-2"
+        >
           20 Minutes
         </button>
-        <button type="button" data-time="1800" class="time-select btn btn-outline-secondary m-2">
+        <button
+          type="button"
+          data-time="1800"
+          class="time-select btn btn-outline-light m-2"
+        >
           30 Minutes
         </button>
       </div>
+      <!-- Select the different sound -->
       <div class="m-5">
-        <button type="button" class="rain btn btn-primary m-3">
-          <i class="fa-solid fa-cloud-rain"></i>
-        </button>
-        <button type="button" class="beach btn btn-danger m-3">
-          <i class="fa-solid fa-umbrella-beach"></i>
-        </button>
-      </div>
-      <div class="m-5 containter">
-        
+        <!-- Default sound -->
+        <audio id="audio" src="./sounds/beach.mp3" loop="true"></audio>
+      <!-- Sound select button -->
         <button
           type="button"
-          class="btn btn-outline-dark p-5 rounded-pill play-btn"
+          class="sound-select btn btn-info m-3"
+          onclick="changeSound('./sounds/beach.mp3')"
         >
+          <i class="fa-solid fa-umbrella-beach"></i>
+        </button>
+        <button
+          type="button"
+          class="sound-select btn btn-danger m-3"
+          onclick="changeSound('./sounds/fire.mp3')"
+        >
+          <i class="fa-solid fa-fire"></i>
+        </button>
+        <button
+          type="button"
+          class="sound-select btn btn-success m-3"
+          onclick="changeSound('./sounds/rain.mp3')"
+        >
+          <i class="fa-solid fa-cloud-rain"></i>
+        </button>
+        <button
+          type="button"
+          class="sound-select btn btn-primary m-3"
+          onclick="changeSound('./sounds/water.mp3')"
+        >
+          <i class="fa-solid fa-water"></i>
+        </button>
+      </div>
+      <!-- Play button -->
+      <div class="m-5 containter">
+        <button type="button" class="btn btn-dark p-5 rounded-pill play-btn">
           <i class="fa-solid fa-play display-3"></i>
         </button>
-        <!-- Default Audio and Video background -->
-        <audio id="audio" loop>
-          <source src="./sounds/rain.mp3" />
-        </audio>
-        <video id="video" loop>
-          <source src="./video/rain.mp4" type="video/mp4" />
-        </video>
       </div>
+      <!-- Timer -->
       <div class="display-4 text-white time-display">00:00</div>
     </div>
     <!-- Bootstrap -->
@@ -78,13 +112,6 @@
       integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
       crossorigin="anonymous"
     ></script>
-    <!-- jQuery -->
-    <!-- <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
-      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script> -->
     <script src="./app.js"></script>
   </body>
 </html>

@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+body {
+  background-image: url("https://images.pexels.com/photos/775417/pexels-photo-775417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 video {
   max-height: 100vh;
   max-width: auto;
