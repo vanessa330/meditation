@@ -1,8 +1,9 @@
 const playBtn = document.querySelector(".play-btn");
 let audio = document.querySelector("#audio");
 let timeDisplay = document.querySelector(".time-display");
-let fakeDuration = 300;
+let fakeDuration = 10; // Default 300 = 5mins
 const timeSelect = Array.from(document.querySelectorAll(".time-select"));
+const soundSelect = Array.from(document.querySelectorAll(".sound-select"));
 
 // Select the time druration button
 
@@ -10,25 +11,32 @@ timeSelect.map((button) => {
   button.addEventListener("click", () => {
     fakeDuration = button.getAttribute("data-time");
 
-    timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:00`;
+    if (fakeDuration < 600) {
+      timeDisplay.textContent = `0${fakeDuration / 60}:00`;
+    } else {
+      timeDisplay.textContent = `${fakeDuration / 60}:00`;
+    }
   });
 });
 
 // Select the different audio
 
-let changeSound = (musicPath) => {
-  audio.pause();
-  audio.setAttribute("src", musicPath);
-  audio.load();
-};
+soundSelect.map((button) => {
+  button.addEventListener("click", () => {
+    let soundPath = button.getAttribute("data-audio");
+    
+    audio.setAttribute("src", soundPath);
+    audio.load();
+  });
+});
 
 // Stop and play the sound
 
 playBtn.addEventListener("click", () => {
   checkPlaying();
-})
+});
 
-function checkPlaying(){
+function checkPlaying() {
   if (audio.paused) {
     playBtn.innerHTML = `<i class="fa-solid fa-pause display-3"></i>`;
     audio.play();
@@ -38,7 +46,7 @@ function checkPlaying(){
     audio.pause();
     window.clearInterval(timerInterval);
   }
-} 
+}
 
 // Animated the time display
 
@@ -64,11 +72,11 @@ function countdown() {
     leadingSeconds = seconds;
   }
 
-  timeDisplay.innerText = `${leadingMinutes}:${leadingSeconds}`;
+  timeDisplay.textContent = `${leadingMinutes}:${leadingSeconds}`;
 
   if (timeRemaining <= 0) {
-    playBtn.innerHTML = `<i class="fa-solid fa-play display-3"></i>`;
-    audio.pause();
-    timeDisplay.innerHTML = `00:00`;
+    timeDisplay.textContent = `05:00`;
+    fakeDuration = 300;
+    checkPlaying();
   }
 }
