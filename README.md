@@ -1,2 +1,2 @@
-#Meditaiton App
+# Meditaiton App
 > Using bootstrap
