@@ -1,7 +1,7 @@
 const playBtn = document.querySelector(".play-btn");
 let audio = document.querySelector("#audio");
 let timeDisplay = document.querySelector(".time-display");
-let fakeDuration = 10; // Default 300 = 5mins
+let fakeDuration = 300; // Default 300 = 5mins
 const timeSelect = Array.from(document.querySelectorAll(".time-select"));
 const soundSelect = Array.from(document.querySelectorAll(".sound-select"));
 
