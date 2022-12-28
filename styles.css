@@ -5,11 +5,17 @@
 }
 
 body {
-  background-image: url("https://images.pexels.com/photos/775417/pexels-photo-775417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+  background-image: url("https://images.pexels.com/photos/268134/pexels-photo-268134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
   background-position: center;
   background-repeat: no-repeat;
 }
 
-.play-btn {
-  width: 200px;
+#play-pause-btn, #reset-btn {
+  width: 8em;
+  height: 8em;
+  border-radius: 5px;
+}
+
+#time-display {
+  background-color: rgba(000, 000, 000, 0.7);
 }
