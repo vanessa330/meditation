@@ -1,3 +1,4 @@
 # Meditaiton App
 
-> bootstrap and jQuery
+- bootstrap
+- jQuery
